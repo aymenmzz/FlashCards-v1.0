@@ -4,10 +4,7 @@ import styled from "styled-components";
 import Menu from "./Menu";
 import React from "react";
 
-function Layout({ children }) {
-  const [dark, setDark] = React.useState(() => false);
-
-  const toggleDark = () => setDark((Dark) => !Dark);
+function Layout({ children, dark, toggleDark }) {
 
   const [hide, setHide] = React.useState(() => true);
 
@@ -21,7 +18,7 @@ function Layout({ children }) {
             style={
               dark
                 ? { backgroundColor: "black", color: "white", height: "100vh" }
-                : { backgroundColor: "white", height: "100vh" }
+                : { backgroundColor: "white",color: "black", height: "100vh" }
             }
           >
             <header className="header">
