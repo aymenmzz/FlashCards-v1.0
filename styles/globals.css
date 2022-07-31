@@ -1,16 +1,188 @@
+
+@import 'react-toastify/dist/ReactToastify.css';
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    height: 100%;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 20px auto;
+  flex-direction: column;
+}
+form input {
+  margin: 20px 35px 20px 2px;
+  padding: 5px 30px 5px 10px;
+  border-radius: 6px;
+  border: 1px solid lightgray;
+  box-shadow: 1px 1px 1px 0 rgba(55,55,55,0.5);
+}
+
+@media(max-width: 750px) {
+  
+  .header{
+  padding: 15px 0 20px 0;
+  }
+
+  .header > a {
+    width: 200px;
+    margin-left: 2%;
+  } 
+
+  form input {
+    margin: 10px auto 10px auto;
+  }
+
+  #dark-mode-container {
+    width: 130px;
+    padding: 0
+  }
+
+  label > svg {
+    margin-right: 5px;
+    margin-bottom: 3px;
+   }
+}
+
+label {
+  transform: scale(1.1)
+}
+
+input:focus {
+  outline-width: 0;
 }
 
 * {
   box-sizing: border-box;
 }
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px 20px 15px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 22px;
+}
+
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ffffff;
+}
+
+input:checked + .slider:before {
+  background-color: black;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ffffff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.adjust-logo {
+  width: 35px;
+  height: auto;
+
+}
+@media (min-width: 900px) {
+  #croix{
+  width: 50px;
+  height: auto;
+}  
+}
+
+.annexe {
+  font-weight: 500;
+}
+
+.annexe:hover {
+  opacity: 0.8;
+}
+
+
+#dark-mode-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#dark-mode-container > * {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
