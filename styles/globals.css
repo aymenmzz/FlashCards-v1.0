@@ -37,6 +37,7 @@ form input {
   border: 1px solid lightgray;
   box-shadow: 1px 1px 1px 0 rgba(55,55,55,0.5);
   background-color: white;
+  color: black;
 }
 
 @media(max-width: 750px) {
