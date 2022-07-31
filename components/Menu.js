@@ -17,7 +17,7 @@ export default function Menu({ toggleHide, dark }) {
           flexDirection: "column",
           justifyContent: "start",
           width: "50%",
-          height: "100vh",
+          minHeight: "100%",
           transform: "translateX(0)",
           animation: `linear .15s ${style.animate}`,
           backgroundColor: "lightgray",
