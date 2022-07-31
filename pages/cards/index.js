@@ -61,7 +61,7 @@ function Accueil({ flashCards, vide }) {
         <>
           {/* Si Aucune Flash Card n'est présente après avoir fetch LocalStorage */}
           <h2 style={{ textAlign: "center", marginBottom: 20 }}>
-            Vous n'avez aucune Flash Card pour le moment !
+            Vous n&lsquo;avez aucune Flash Card pour le moment !
           </h2>
 
           <p
@@ -71,7 +71,7 @@ function Accueil({ flashCards, vide }) {
             Vous pouvez dès maintenant vous en créer une ou plusieurs en
             procédant comme suit :
             <br /> <br />
-            Dirigez-vous vers la page d'ajout en cliquant{" "}
+            Dirigez-vous vers la page d&lsquo;ajout en cliquant{" "}
             <Link href="/ajout">
               <a
                 style={{
@@ -92,18 +92,18 @@ function Accueil({ flashCards, vide }) {
             Ressources additionnelles{" "}
           </h2>
           <p className={styles.card} style={{ marginBottom: 25 }}>
-            Quelques notions en rapport avec l'utilité des Flash Cards sont
-            dispoibles en cliquant sur la barre de menu située en haut à gauche
-            de votre écran.
+            Quelques notions en rapport avec l&lsquo;utilité des Flash Cards
+            sont dispoibles en cliquant sur la barre de menu située en haut à
+            gauche de votre écran.
             <br />
             <br />
-            Vous y trouverez notamment des articles, des vidéos, ainsi qu'un
-            extrait de livre.
+            Vous y trouverez notamment des articles, des vidéos, ainsi
+            qu&lsquo;un extrait de livre.
             <br />
             <br />
-            NB : Ces ressources ne servent qu'à donner à l'utilisateur des
-            pistes de recherches pour approfondir certaines connaissance, elles
-            ne sont en aucun cas une fin en soi.
+            NB : Ces ressources ne servent qu&lsquo;à donner à
+            l&lsquo;utilisateur des pistes de recherches pour approfondir
+            certaines connaissance, elles ne sont en aucun cas une fin en soi.
           </p>
         </>
       ) : (

@@ -3,7 +3,7 @@ import React from "react";
 import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
 
-export default function renderDomains({ flashCards, removeFlashCard, flash }) {
+export default function RenderDomains({ flashCards, removeFlashCard, flash }) {
   const router = useRouter();
   const domain = router.query.domains;
 

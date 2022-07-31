@@ -6,12 +6,10 @@ import { useRouter, push } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const [flashCards, setFlashCards] = React.useState(
-    typeof window !== "undefined"
-      ? JSON.parse(
-          localStorage.getItem("FlashCards") &&
-            localStorage.getItem("FlashCards")
-        )
-      : []
+    typeof window !== "undefined" &&
+      JSON.parse(
+        localStorage.getItem("FlashCards") && localStorage.getItem("FlashCards")
+      )
   );
 
   React.useEffect(() => {

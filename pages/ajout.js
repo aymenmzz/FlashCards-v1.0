@@ -132,7 +132,7 @@ export default function Ajout({
           }}
         >
           <h2 style={{ transform: "translateX(-4%)", textAlign: "center" }}>
-            Ajout d'une Flash Card
+            Ajout d&lsquo;une Flash Card
           </h2>
         </div>
       </div>
@@ -142,8 +142,8 @@ export default function Ajout({
         seront organisées par domaines.
         <br />
         <br />
-        Précisez ensuite la question correspondant à l'information que vous
-        souhaitez retenir.
+        Précisez ensuite la question correspondant à l&lsquo;information que
+        vous souhaitez retenir.
         <br />
         <br />
         Enfin, inscrivez la réponse à la question que vous avez indiquée

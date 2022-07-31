@@ -11,7 +11,7 @@ export default function Home({ vide, flashCards }) {
   return (
     <>
       <h2 style={{ textAlign: "center" }}>
-        Bienvenue sur l'application <br /> Flash Cards !{" "}
+        Bienvenue sur l&lsquo;application <br /> Flash Cards !{" "}
       </h2>
       <div
         style={{
@@ -23,7 +23,7 @@ export default function Home({ vide, flashCards }) {
           marginBottom: 60,
         }}
       >
-        <h3>Une Flash Card c'est quoi ?</h3>
+        <h3>Une Flash Card c&lsquo;est quoi ?</h3>
         <p className={styles.card}>
           Les Flash Cards sont en quelque sortes des fiches de révisions. Elles
           fournissent un court contenu d’informations avec des mots, des
@@ -36,11 +36,11 @@ export default function Home({ vide, flashCards }) {
         <h3>Comment ça marche ? </h3>
         <p className={styles.card}>
           Si vous souhaitez retenir une information, rentrez une quesiton
-          concernant l'information ainsi que la réponse et votre Flash Card sera
-          sauvegardée. Consultez ensuite cette Flash Card de temps en temps sans
-          regarder la réponse pour la chercher dans votre mémoire, ce qui vous
-          aidera à la retenir plus efficacement que par la méthode classique de
-          répétition.
+          concernant l&lsquo;information ainsi que la réponse et votre Flash
+          Card sera sauvegardée. Consultez ensuite cette Flash Card de temps en
+          temps sans regarder la réponse pour la chercher dans votre mémoire, ce
+          qui vous aidera à la retenir plus efficacement que par la méthode
+          classique de répétition.
         </p>
       </div>
       <div className={styles.buttonContainer}>

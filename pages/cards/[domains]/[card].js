@@ -3,7 +3,7 @@ import Card from "../../../components/Card";
 import React from "react";
 import styles from "../../../styles/Home.module.css";
 
-export default function card({ flashCards }) {
+export default function FlashCard({ flashCards }) {
   const router = useRouter();
   const id = router.query.card;
 
