@@ -3,7 +3,6 @@ import Layout from "../components/Layout";
 import React from "react";
 import { nanoid } from "nanoid";
 import { useRouter, push } from "next/router";
-import ReactLoading from "react-loading";
 
 function MyApp({ Component, pageProps }) {
   const [flashCards, setFlashCards] = React.useState(
