@@ -70,7 +70,7 @@ export default function Menu({ toggleHide, dark }) {
           backgroundColor: "inherit",
           display: "inline-block",
           width: "50%",
-          height: "100vh",
+          minHeight: "100%",
         }}
       ></div>
     </div>

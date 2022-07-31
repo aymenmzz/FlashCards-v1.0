@@ -17,8 +17,8 @@ function Layout({ children, dark, toggleDark }) {
           <div
             style={
               dark
-                ? { backgroundColor: "black", color: "white", height: "100vh" }
-                : { backgroundColor: "white",color: "black", height: "100vh" }
+                ? { backgroundColor: "black", color: "white", minHeight: "100%" }
+                : { backgroundColor: "white",color: "black", minHeight: "100%" }
             }
           >
             <header className="header">
@@ -59,7 +59,7 @@ function Layout({ children, dark, toggleDark }) {
               </Link>
               <DarkModeButton dark={dark} toggleDark={() => toggleDark()} />
             </header>
-            <div style={{ minHeight: "83.7%" }}>{children}</div>
+            <div style={{ minHeight: "100%" }}>{children}</div>
             <footer
               style={{
                 display: "flex",
