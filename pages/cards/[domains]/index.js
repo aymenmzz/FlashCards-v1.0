@@ -3,14 +3,14 @@ import React from "react";
 import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
 
-export default function RenderDomains({ flashCards, removeFlashCard, flash }) {
+export default function RenderDomains({ flashCards, removeFlashCard }) {
   const router = useRouter();
   const domain = router.query.domains;
 
   const [exist, setExist] = React.useState(
     (function () {
       let retourExist = false;
-      flashCards?.map((flashCard) => {
+      flashCards.map((flashCard) => {
         if (flashCard.titre === "" + domain) retourExist = true;
       });
       return retourExist;
@@ -19,7 +19,7 @@ export default function RenderDomains({ flashCards, removeFlashCard, flash }) {
 
   const card = (function () {
     let retour = null;
-    flashCards?.map((flash) => {
+    flashCards.map((flash) => {
       if (flash.titre === domain) {
         retour = flash;
       }
@@ -28,17 +28,17 @@ export default function RenderDomains({ flashCards, removeFlashCard, flash }) {
   })();
 
   const [cards, setCards] = React.useState(
-    flashCards?.filter((flash) => flash.titre === domain)[0]
+    flashCards.filter((flash) => flash.titre === domain)[0]
   );
 
   React.useEffect(() => {
     let retourExist = false;
-    flashCards?.map((flashCard) => {
+    flashCards.map((flashCard) => {
       if (flashCard.titre === domain) retourExist = true;
     });
     setExist(retourExist);
     let retour = null;
-    flashCards?.map((flash) => {
+    flashCards.map((flash) => {
       if (flash.titre === domain) {
         retour = flash;
       }
@@ -86,7 +86,7 @@ export default function RenderDomains({ flashCards, removeFlashCard, flash }) {
             </div>
           </div>
           <>
-            {cards?.flashCards.map((flashCard, index) => {
+            {cards.flashCards.map((flashCard, index) => {
               return (
                 <div
                   className={styles.card}
@@ -137,15 +137,4 @@ export default function RenderDomains({ flashCards, removeFlashCard, flash }) {
 }
 {
   /* {exist ? "" : <p>Erreur, il n'y aucun domaine au nommé {domain}</p>} */
-}
-
-export async function getServerSideProps() {
-  return {
-    props: {
-      flash:
-        typeof window !== "undefined"
-          ? JSON.parse(localStorage.getItem("FlashCards"))
-          : "",
-    },
-  };
 }

@@ -19,9 +19,10 @@ export default function Ajout({
   const [titre, setTitre] = React.useState(() => "");
   const [identifiant, setIdentifiant] = React.useState(() => "");
 
+
   const include = () => {
     let retour = false;
-    flashCards?.map((flashCard) => {
+    flashCards.map((flashCard) => {
       if (flashCard.titre === titre) retour = true;
     });
     return retour;
@@ -31,10 +32,10 @@ export default function Ajout({
     let retour = false;
     if (identifiant === "") return retour;
     else {
-      const currentDomain = flashCards?.filter(
+      const currentDomain = flashCards && flashCards.filter(
         (flashCard) => flashCard.titre === titre
       )[0];
-      currentDomain?.flashCards.map((flashCard) => {
+     currentDomain &&  currentDomain.flashCards.map((flashCard) => {
         if (flashCard.id === identifiant) retour = true;
       });
       return retour;

@@ -6,8 +6,6 @@ import React from "react";
 import Menu from "../components/Menu";
 
 export default function Home({ vide, flashCards }) {
-  if (typeof window !== "undefined" && vide() && flashCards)
-    localStorage.clear();
   return (
     <>
       <h2 style={{ textAlign: "center" }}>

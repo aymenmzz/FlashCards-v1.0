@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
 
 function Accueil({ flashCards, vide }) {
-  const render = flashCards?.map((flashCard, index) => {
+  const render = flashCards && flashCards.map((flashCard, index) => {
     return flashCard.flashCards.length > 0 ? (
       <div key={index}>
         <Link href={`/cards/${flashCard.titre}`}>

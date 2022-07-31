@@ -11,11 +11,11 @@ export default function FlashCard({ flashCards }) {
 
   const getCurrentFlashCard = () => {
     //1) extraire dans une constante le domaine
-    const domain = flashCards?.filter(
+    const domain = flashCards.filter(
       (flashCard) => flashCard.titre === router.query.domains
     )[0];
     //2) extraire dans une constante la flash card associée à l'id
-    const currentFlashCard = domain?.flashCards.filter(
+    const currentFlashCard = domain.flashCards.filter(
       (flashC) => flashC.id === id
     )[0];
     //3) renvoyer la constante créée en (2)
