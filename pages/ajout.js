@@ -22,7 +22,7 @@ export default function Ajout({
 
   const include = () => {
     let retour = false;
-    flashCards.map((flashCard) => {
+    flashCards && flashCards.map((flashCard) => {
       if (flashCard.titre === titre) retour = true;
     });
     return retour;
@@ -79,15 +79,15 @@ export default function Ajout({
         };
         //si flashCards vide newFlashCard()
         if (!flashCards) {
-          newFlashCard({ titre, flashCards: [flashCard] });
+          newFlashCard({ titre, flashCards: [flashCards && flashCard] });
         }
         //sinon si domaine non existant addDomain()
         else if (!include()) {
-          addDomain({ titre, flashCards: [flashCard] });
+          addDomain({ titre, flashCards: [flashCards && flashCard] });
         }
         // sinon [domaine déjà existant] addFlashCard()
         else {
-          addFlashCard(titre, flashCard);
+          addFlashCard(titre, flashCards && flashCard);
         }
         toast.success(`La Flash Card sur ${titre} a été ajoutée !`);
 

@@ -11,7 +11,7 @@ export default function FlashCard({ flashCards }) {
 
   const getCurrentFlashCard = () => {
     //1) extraire dans une constante le domaine
-    const domain = flashCards.filter(
+    const domain = flashCards && flashCards.filter(
       (flashCard) => flashCard.titre === router.query.domains
     )[0];
     //2) extraire dans une constante la flash card associée à l'id

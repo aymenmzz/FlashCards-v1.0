@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import Menu from "../components/Menu";
 
-export default function Home({ vide, flashCards }) {
+export default function Home() {
   return (
     <>
       <h2 style={{ textAlign: "center" }}>

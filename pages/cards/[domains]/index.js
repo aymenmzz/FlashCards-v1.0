@@ -10,7 +10,7 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
   const [exist, setExist] = React.useState(
     (function () {
       let retourExist = false;
-      flashCards.map((flashCard) => {
+      flashCards && flashCards.map((flashCard) => {
         if (flashCard.titre === "" + domain) retourExist = true;
       });
       return retourExist;
@@ -19,7 +19,7 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
 
   const card = (function () {
     let retour = null;
-    flashCards.map((flash) => {
+    flashCards && flashCards.map((flash) => {
       if (flash.titre === domain) {
         retour = flash;
       }
@@ -28,17 +28,17 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
   })();
 
   const [cards, setCards] = React.useState(
-    flashCards.filter((flash) => flash.titre === domain)[0]
+    flashCards && flashCards.filter((flash) => flash.titre === domain)[0]
   );
 
   React.useEffect(() => {
     let retourExist = false;
-    flashCards.map((flashCard) => {
+    flashCards && flashCards.map((flashCard) => {
       if (flashCard.titre === domain) retourExist = true;
     });
     setExist(retourExist);
     let retour = null;
-    flashCards.map((flash) => {
+    flashCards && flashCards.map((flash) => {
       if (flash.titre === domain) {
         retour = flash;
       }
