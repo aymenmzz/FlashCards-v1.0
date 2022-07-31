@@ -5,6 +5,11 @@ import { nanoid } from "nanoid";
 import { useRouter, push } from "next/router";
 
 function MyApp({ Component, pageProps }) {
+
+  const [dark, setDark] = React.useState(() => false);
+
+  const toggleDark = () => setDark((Dark) => !Dark);
+
   const [flashCards, setFlashCards] = React.useState(
     typeof window !== "undefined" &&
       JSON.parse(
@@ -139,6 +144,8 @@ function MyApp({ Component, pageProps }) {
           newFlashCard={newFlashCard}
           removeFlashCard={removeFlashCard}
           vide={vide}
+          dark={dark}
+          toggleDark={toggleDark}
         />
       </Layout>
       }
