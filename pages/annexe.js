@@ -66,7 +66,9 @@ export default function Annexe() {
         .
       </p>
       <br />
-      <h3 style={{ textAlign: "center" }}>Plus de détails sur l'applicaton</h3>
+      <h3 style={{ textAlign: "center" }}>
+        Plus de détails sur l&lsquo;applicaton
+      </h3>
       <p className={styles.card} style={{ marginBottom: 20 }}>
         Cette application est la version 1.0.
         <br />
