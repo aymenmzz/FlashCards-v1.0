@@ -9,7 +9,10 @@ function MyApp({ Component, pageProps }) {
 
   const fetchDebut = () => {
     const test = localStorage.getItem("FlashCards")
-    if(!test) return []
+    if(!test) { 
+      localStorage.setItem("FlashCards", "[]")
+    return []
+}
     else return JSON.parse(test)
   }
 
