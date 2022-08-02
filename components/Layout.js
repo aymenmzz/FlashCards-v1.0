@@ -4,7 +4,12 @@ import styled from "styled-components";
 import Menu from "./Menu";
 import React from "react";
 
-function Layout({ children, dark, toggleDark }) {
+function Layout({ children}) {
+
+  
+  const [dark, setDark] = React.useState(() => false);
+
+  const toggleDark = () => setDark(prevDark=> !prevDark)
 
   const [hide, setHide] = React.useState(() => true);
 
@@ -57,7 +62,7 @@ function Layout({ children, dark, toggleDark }) {
                   </h2>
                 </a>
               </Link>
-              <DarkModeButton dark={dark} toggleDark={() => toggleDark()} />
+              <DarkModeButton dark={dark} toggleDark={()=>toggleDark()} />
             </header>
             <div style={{ minHeight: "100%" }}>{children}</div>
             <footer
