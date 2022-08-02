@@ -44,14 +44,14 @@ export default function Home() {
       <div className={styles.buttonContainer}>
         <Link href="/cards">
           <a>
-            <button className={styles.consult} id="consult">
+            <button style={{color: 'black', backgroundColor: "lightgray"}} className={styles.consult} id="consult">
               Consulter mes FlashCards
             </button>
           </a>
         </Link>
         <Link href="/ajout">
           <a>
-            <button className={styles.add} id="add">
+            <button style={{color: 'black', backgroundColor: "lightgray"}} className={styles.add} id="add">
               Ajouter une FlashCard
             </button>
           </a>

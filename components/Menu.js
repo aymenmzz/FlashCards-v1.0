@@ -2,7 +2,7 @@ import React from "react";
 import style from "../styles/Menu.module.css";
 import Articles from "./Articles";
 
-export default function Menu({ toggleHide, dark }) {
+export default function Menu({ toggleHide, dark}) {
   return (
     <div
       style={{

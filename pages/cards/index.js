@@ -6,7 +6,7 @@ import styles from "../../styles/Home.module.css";
 function Accueil({ flashCards, vide }) {
   const render = flashCards && flashCards.map((flashCard, index) => {
     return flashCard.flashCards.length > 0 ? (
-      <div key={index}>
+      <div key={index} style={{minHeight: "100%"}}>
         <Link href={`/cards/${flashCard.titre}`}>
           <h3
             className={styles.card}

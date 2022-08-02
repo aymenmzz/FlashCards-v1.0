@@ -6,8 +6,8 @@ export default function Card({ flashCard }) {
 
   return (
     <>
-      <div className={styles.card} style={{ marginTop: 120 }}>
-        <h2>{afficherReponse ? flashCard?.reponse : flashCard?.question}</h2>
+      <div className={styles.card} style={{ marginTop: 120, marginBottom: 30 }}>
+        <h2>{afficherReponse ? flashCard.reponse : flashCard.question}</h2>
         <button
           className={styles.buttonRouter}
           style={{ marginBottom: 0, marginTop: 25 }}

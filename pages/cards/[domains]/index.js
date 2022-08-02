@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function RenderDomains({ flashCards, removeFlashCard }) {
   const router = useRouter();
   const domain = router.query.domains;
+  console.log(flashCards)
 
   const [exist, setExist] = React.useState(
     (function () {
@@ -48,7 +49,7 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
   //écrire une variable render pour y mettre les flash cards associées au domaine courant
   return (
     <>
-      {flashCards ? (
+      { flashCards ? (
         <>
           <div
             style={{
