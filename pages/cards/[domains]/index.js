@@ -4,11 +4,10 @@ import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
 
 export default function RenderDomains({ flashCards, removeFlashCard }) {
-  try {
-    const router = useRouter();
-    const domain = router.query.domains;
+  const router = useRouter();
+  const domain = router.query.domains;
   console.log(flashCards)
-
+  
   const [exist, setExist] = React.useState(
     (function () {
       let retourExist = false;
@@ -28,16 +27,16 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
     });
     return retour;
   })();
-
+  
   const [cards, setCards] = React.useState(
     flashCards && flashCards.filter((flash) => flash.titre === domain)[0]
-  );
-
-  React.useEffect(() => {
-    let retourExist = false;
-    flashCards && flashCards.map((flashCard) => {
-      if (flashCard.titre === domain) retourExist = true;
-    });
+    );
+    
+    React.useEffect(() => {
+      let retourExist = false;
+      flashCards && flashCards.map((flashCard) => {
+        if (flashCard.titre === domain) retourExist = true;
+      });
     setExist(retourExist);
     let retour = null;
     flashCards && flashCards.map((flash) => {
@@ -48,6 +47,7 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
     setCards(retour);
   }, [flashCards]);
   //écrire une variable render pour y mettre les flash cards associées au domaine courant
+  try {
   return (
     <>
       { flashCards ? (
