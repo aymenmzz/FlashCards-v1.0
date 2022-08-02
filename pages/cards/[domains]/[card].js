@@ -4,7 +4,6 @@ import React from "react";
 import styles from "../../../styles/Home.module.css";
 
 export default function FlashCard({ flashCards }) {
-  try {
   const router = useRouter();
   const {card} = router.query;
 
@@ -51,7 +50,7 @@ export default function FlashCard({ flashCards }) {
             justifyContent: "center",
             width: "100%",
           }}
-        >
+          >
           <h2 style={{ transform: "translateY(0)", marginRight: "5%" }}>
             {card}
           </h2>
@@ -59,8 +58,6 @@ export default function FlashCard({ flashCards }) {
       </div>{" "}
       <Card flashCard={getCurrentFlashCard()} />{" "}
     </>
-  );}
-  catch(e) {
-    return <></>
-  }
+  );
+
 }

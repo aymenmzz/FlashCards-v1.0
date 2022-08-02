@@ -4,8 +4,9 @@ import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
 
 export default function RenderDomains({ flashCards, removeFlashCard }) {
-  const router = useRouter();
-  const domain = router.query.domains;
+  try {
+    const router = useRouter();
+    const domain = router.query.domains;
   console.log(flashCards)
 
   const [exist, setExist] = React.useState(
@@ -79,7 +80,7 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
                 justifyContent: "center",
                 width: "100%",
               }}
-            >
+              >
               <h2 style={{ transform: "translateY(0)", marginRight: "5%" }}>
                 {/* {exist ? `Mes Flash Cards sur ${domain}` : "Erreur"} */}
                 Mes Flash Cards sur {domain}
@@ -90,14 +91,14 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
             {cards.flashCards.map((flashCard, index) => {
               return (
                 <div
-                  className={styles.card}
-                  key={index}
-                  style={{
-                    marginBottom: 25,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
+                className={styles.card}
+                key={index}
+                style={{
+                  marginBottom: 25,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
                 >
                   <Link href={`/cards/${domain}/${flashCard.id}`}>
                     <h3 style={{ cursor: "pointer", marginRight: 10 }}>
@@ -131,6 +132,10 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
       )}
     </>
   );
+}
+  catch(e) {
+    return <></>
+  }
 }
 
 {
