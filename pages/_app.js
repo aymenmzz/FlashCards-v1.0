@@ -6,17 +6,16 @@ import { useRouter, push } from "next/router";
 
 function MyApp({ Component, pageProps }) {
 
-  const [dark, setDark] = React.useState(() => false);
 
-  const toggleDark = () => setDark((Dark) => !Dark);
+  const fetchDebut = () => {
+    const test = localStorage.getItem("FlashCards")
+    if(!test) return []
+    else return JSON.parse(test)
+  }
 
   const [flashCards, setFlashCards] = React.useState(
-    typeof window !== "undefined" &&
-      JSON.parse(
-        localStorage.getItem("FlashCards") && localStorage.getItem("FlashCards")
-      )
+    typeof window !== "undefined" && fetchDebut()
   );
-
   React.useEffect(() => {
     localStorage.setItem("FlashCards",JSON.stringify(
         flashCards && flashCards.filter((flashCard) => flashCard.flashCards.length > 0))
@@ -144,8 +143,6 @@ function MyApp({ Component, pageProps }) {
           newFlashCard={newFlashCard}
           removeFlashCard={removeFlashCard}
           vide={vide}
-          dark={dark}
-          toggleDark={toggleDark}
         />
       </Layout>
       }
