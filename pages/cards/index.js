@@ -53,7 +53,7 @@ function Accueil({ flashCards, vide }) {
           }}
         >
           <h2 style={{ transform: "translateY(0)", marginRight: "5%" }}>
-            Mes Domaines
+            Mes Domaines 
           </h2>
         </div>
       </div>

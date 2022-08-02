@@ -127,6 +127,18 @@ function MyApp({ Component, pageProps }) {
     vide() ? localStorage.removeItem("FlashCards") : save();
   };
 
+  //pour supprimer un domaine
+  const deleteDomain = (domain) => {
+    setFlashCards(prevFlash => prevFlash.filter(flashCard => flashCard.titre !== domain))
+    vide() ? push("/") : push("/cards")
+  }
+
+  //pour tout remettre à 0 
+  const restore = () => {
+    typeof window !== "undefined" && localStorage.setItem("FlashCards", "[]")
+    push("/")
+  }
+
   //au lancement de l'application, aucune flashCard n'est attribuée,
   //cette fonction sera appellé à ce moment pour initialiser
   //la variable localStorage
@@ -147,6 +159,8 @@ function MyApp({ Component, pageProps }) {
           newFlashCard={newFlashCard}
           removeFlashCard={removeFlashCard}
           vide={vide}
+          deleteDomain={deleteDomain}
+          restore={restore}
         />
       </Layout>
       }
