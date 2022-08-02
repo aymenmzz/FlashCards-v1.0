@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   const [flashCards, setFlashCards] = React.useState(
-    typeof window !== "undefined" && fetchDebut()
+    typeof window !== "undefined" ? fetchDebut() : []
   );
   React.useEffect(() => {
     localStorage.setItem("FlashCards",JSON.stringify(
@@ -62,7 +62,6 @@ function MyApp({ Component, pageProps }) {
   };
 
   save();
-
   //pour ajouter un nouveau domaine
   const addNewDomain = (newFlash) => {
     setFlashCards((prevFlash) => [...prevFlash, newFlash]);
