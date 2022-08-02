@@ -4,6 +4,7 @@ import React from "react";
 import styles from "../../../styles/Home.module.css";
 
 export default function FlashCard({ flashCards }) {
+  try {
   const router = useRouter();
   const {card} = router.query;
 
@@ -20,7 +21,6 @@ export default function FlashCard({ flashCards }) {
     //3) renvoyer la constante créée en (2)
     return currentFlashCard;
   };
-try {
   return (
     <>
       <div
