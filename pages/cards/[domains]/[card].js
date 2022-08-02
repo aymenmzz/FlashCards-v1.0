@@ -59,7 +59,7 @@ export default function FlashCard({ flashCards }) {
       <br/>
       <br/>
 
-      <Card flashCard={getCurrentFlashCard()} />{" "}
+      <Card flashCard={flashCards && getCurrentFlashCard()} />{" "}
     </>
   );
 
