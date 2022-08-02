@@ -5,8 +5,9 @@ import styles from "../../../styles/Home.module.css";
 
 export default function FlashCard({ flashCards }) {
   const router = useRouter();
-  const id = router.query.card;
+  const {card} = router.query;
 
+  console.log(card)
   const getCurrentFlashCard = () => {
     //1) extraire dans une constante le domaine
     const domain = flashCards && flashCards.filter(
@@ -14,7 +15,7 @@ export default function FlashCard({ flashCards }) {
     )[0];
     //2) extraire dans une constante la flash card associée à l'id
     const currentFlashCard = domain && domain.flashCards.filter(
-      (flashC) => flashC.id === id
+      (flashC) => flashC.id === card
     )[0];
     //3) renvoyer la constante créée en (2)
     return currentFlashCard;
@@ -52,7 +53,7 @@ export default function FlashCard({ flashCards }) {
           }}
         >
           <h2 style={{ transform: "translateY(0)", marginRight: "5%" }}>
-            {id}
+            {card}
           </h2>
         </div>
       </div>{" "}
