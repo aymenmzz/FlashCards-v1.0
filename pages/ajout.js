@@ -60,7 +60,7 @@ export default function Ajout({
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (question === "" || reponse === "" || titre === "")
+    if (question === "" || reponse === "" || titre === "", identifiant === "")
       toast.error("Il manque une ou plusieurs informations");
     else if (!question.includes("?"))
       toast.error(
