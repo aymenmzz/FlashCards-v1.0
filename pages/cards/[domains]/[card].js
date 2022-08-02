@@ -20,7 +20,7 @@ export default function FlashCard({ flashCards }) {
     //3) renvoyer la constante créée en (2)
     return currentFlashCard;
   };
-
+try {
   return (
     <>
       <div
@@ -59,5 +59,8 @@ export default function FlashCard({ flashCards }) {
       </div>{" "}
       <Card flashCard={getCurrentFlashCard()} />{" "}
     </>
-  );
+  );}
+  catch(e) {
+    return <></>
+  }
 }
