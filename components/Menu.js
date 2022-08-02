@@ -17,7 +17,7 @@ export default function Menu({ toggleHide, dark}) {
           flexDirection: "column",
           justifyContent: "start",
           width: "50%",
-          minHeight: "100%",
+          minHeight: "100vh",
           transform: "translateX(0)",
           animation: `linear .15s ${style.animate}`,
           backgroundColor: "lightgray",
@@ -29,7 +29,6 @@ export default function Menu({ toggleHide, dark}) {
             alignItems: "start",
             justifyContent: "space-around",
             width: "100%",
-            height: "auto",
             margin: 0,
           }}
         >
@@ -70,7 +69,6 @@ export default function Menu({ toggleHide, dark}) {
           backgroundColor: "inherit",
           display: "inline-block",
           width: "50%",
-          minHeight: "100%",
         }}
       ></div>
     </div>

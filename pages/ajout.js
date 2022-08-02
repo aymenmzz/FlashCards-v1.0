@@ -137,6 +137,8 @@ export default function Ajout({
           </h2>
         </div>
       </div>
+        <br/>
+        <br/>
       <h3 style={{ textAlign: "center" }}>Comment ça marche ? </h3>
       <p className={styles.card}>
         Rentrez dans un premier temps le domaine concerné, vos Flash Cards

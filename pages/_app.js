@@ -106,11 +106,13 @@ function MyApp({ Component, pageProps }) {
     if (
       getFlashCardsByDomain(domain).flashCards[0] &&
       getFlashCardsByDomain(domain).flashCards.length > 0
-    )
+    ) {
     flashCards && flashCards.map((flashCard) => {
         if (flashCard.titre === domain) finalValue.push(mutableDomain);
         else finalValue.push(flashCard);
       });
+      push(`/cards/${domain}`)
+}
     else {
       flashCards && flashCards.map((flashCard) => {
         if (flashCard.titre !== mutableDomain.titre) finalValue.push(flashCard);

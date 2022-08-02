@@ -87,6 +87,9 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
               </h2>
             </div>
           </div>
+        <br/>
+        <br/>
+
           <>
             {cards.flashCards.map((flashCard, index) => {
               return (

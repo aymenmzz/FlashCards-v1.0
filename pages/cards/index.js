@@ -57,6 +57,9 @@ function Accueil({ flashCards, vide }) {
           </h2>
         </div>
       </div>
+      <br/>
+      <br/>
+
       {flashCards === null || vide() || render === [false] ? (
         <>
           {/* Si Aucune Flash Card n'est présente après avoir fetch LocalStorage */}

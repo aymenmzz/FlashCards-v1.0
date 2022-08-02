@@ -16,14 +16,14 @@ function Layout({ children}) {
   const toggleHide = () => setHide((prevHide) => !prevHide);
 
   return (
-    <div style={{ minHeight: "1000px" }}>
+    <div>
       {hide ? (
         <>
           <div
             style={
               dark
-                ? { backgroundColor: "black", color: "white", minHeight: "100%" }
-                : { backgroundColor: "white",color: "black", minHeight: "100%" }
+                ? { backgroundColor: "black", color: "white", minHeight: "100vh" }
+                : { backgroundColor: "white",color: "black", minHeight: "100vh" }
             }
           >
             <header className="header">
@@ -64,7 +64,7 @@ function Layout({ children}) {
               </Link>
               <DarkModeButton dark={dark} toggleDark={()=>toggleDark()} />
             </header>
-            <div style={{  }}>{children}</div>
+            <div style={{ minHeight: "92vh" }}>{children}</div>
             <footer
               style={{
                 display: "flex",

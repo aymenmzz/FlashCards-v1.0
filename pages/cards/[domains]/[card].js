@@ -56,6 +56,9 @@ export default function FlashCard({ flashCards }) {
           </h2>
         </div>
       </div>{" "}
+      <br/>
+      <br/>
+
       <Card flashCard={getCurrentFlashCard()} />{" "}
     </>
   );
