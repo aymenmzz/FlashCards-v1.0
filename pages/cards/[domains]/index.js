@@ -137,7 +137,7 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
   );
 }
   catch(e) {
-    console.log(JSON.parse(localStorage.getItem("FlashCards")))
+    typeof window !== "undefined" && console.log(JSON.parse(localStorage.getItem("FlashCards")))
     console.log(flashCards)
     console.log(e)
     return <></>
