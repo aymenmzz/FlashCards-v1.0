@@ -4,8 +4,19 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import React from "react";
 import Menu from "../components/Menu";
+import {push} from "next/router"
+
 
 export default function Home() {
+  React.useEffect(()=> {
+    const test = localStorage.getItem("FlashCard")
+    if(!test) 
+    {
+    localStorage.setItem("FlashCard", "[]")
+      push("/")
+    }
+  }, [])
+
   return (
     <>
       <h2 style={{ textAlign: "center" }}>

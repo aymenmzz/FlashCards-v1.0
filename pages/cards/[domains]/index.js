@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter, push } from "next/router";
 import React from "react";
 import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
@@ -137,10 +137,12 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
   );
 }
   catch(e) {
-    typeof window !== "undefined" && console.log(JSON.parse(localStorage.getItem("FlashCards")))
+    typeof window !== "undefined" && console.log(JSON.parse(localStorage.getItem("FlashCards")));
+    typeof window !== "undefined" && JSON.parse(localStorage.getItem("FlashCards")) && push("/cards/"+domain)
+    
     console.log(flashCards)
     console.log(e)
-    return <></>
+    return <></>;
   }
 }
 
