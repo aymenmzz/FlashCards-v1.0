@@ -134,6 +134,7 @@ export default function RenderDomains({ flashCards, removeFlashCard }) {
   );
 }
   catch(e) {
+    console.log(flashCards)
     console.log(e)
     return <></>
   }
