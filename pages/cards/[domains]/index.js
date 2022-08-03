@@ -4,7 +4,7 @@ import styles from "../../../styles/Home.module.css";
 import Link from "next/link"; 
 import  {buildFlashCardsPath, extractFlashCards} from "../../api/flashCards"
 
-function RenderDomains({ flashCar, removeFlashCard, flash }) {
+function RenderDomains({ flashCar, removeFlashCard}) {
   const router = useRouter();
   const domain = router.query.domains;
   // console.log(flashCar)

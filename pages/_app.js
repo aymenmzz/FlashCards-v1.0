@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 import React from "react";
-import { nanoid } from "nanoid";
 import { useRouter, push } from "next/router";
 
 function MyApp({ Component, pageProps }) {
@@ -10,8 +9,7 @@ function MyApp({ Component, pageProps }) {
   const fetchDebut = () => {
     const test = localStorage.getItem("FlashCards")
     if(!test) { 
-      localStorage.setItem("FlashCards", "[]")
-      
+      localStorage.setItem("FlashCards", "[]")  
     return []
 }
     else return JSON.parse(test)
@@ -22,9 +20,10 @@ function MyApp({ Component, pageProps }) {
   );
   React.useEffect(() => {
     const test = localStorage.getItem("FlashCards")
+    const data = JSON.parse(test)
     fetch('/api/flashCards', {
        method: 'POST',
-       body: test && test,
+       body: flashCards && JSON.stringify(flashCards),
        headers : {'Content-Type': 'application/json'}
      }).then(rep => rep.json()).then(data => console.log(data))
   }, [flashCards]);

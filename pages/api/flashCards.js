@@ -9,6 +9,7 @@ export function buildFlashCardsPath() {
 export function extractFlashCards(filePath) {
   const data = fs.readFileSync(filePath)
   const retour = JSON.parse(data)
+  console.log(retour)
   return retour;
 }
 
