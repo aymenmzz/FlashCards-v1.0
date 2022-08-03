@@ -147,7 +147,7 @@ function RenderDomains({ flashCar, removeFlashCard, flash }) {
     typeof window !== "undefined" && console.log(JSON.parse(localStorage.getItem("FlashCar")));
     console.log(flashCar)
     console.log(e)
-    return <>{flashCar[0].flashCards[0].question}</>;
+    return <></>;
   }
 }
 
