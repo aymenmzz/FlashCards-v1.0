@@ -1,16 +1,17 @@
 import { useRouter } from "next/router";
 import Card from "../../../components/Card";
 import React from "react";
+import  {buildFlashCardsPath, extractFlashCards} from "../../api/flashCards"
 import styles from "../../../styles/Home.module.css";
 
-export default function FlashCard({ flashCards }) {
+function FlashCard({ flashCar }) {
   const router = useRouter();
   const {card} = router.query;
 
   console.log(card)
   const getCurrentFlashCard = () => {
     //1) extraire dans une constante le domaine
-    const domain = flashCards && flashCards.filter(
+    const domain = flashCar && flashCar.filter(
       (flashCard) => flashCard.titre === router.query.domains
     )[0];
     //2) extraire dans une constante la flash card associée à l'id
@@ -59,8 +60,18 @@ export default function FlashCard({ flashCards }) {
       <br/>
       <br/>
 
-      <Card flashCard={flashCards && getCurrentFlashCard()} />{" "}
+      <Card flashCard={flashCar && getCurrentFlashCard()} />{" "}
     </>
   );
 
 }
+
+
+export async function getServerSideProps() {
+  const filePath = buildFlashCardsPath()
+  const testFetch = extractFlashCards(filePath)
+  
+    return {props: {flashCar: testFetch}}
+  }
+
+  export default FlashCard;

@@ -8,14 +8,7 @@ import {push} from "next/router"
 
 
 export default function Home() {
-  React.useEffect(()=> {
-    const test = localStorage.getItem("FlashCard")
-    if(!test) 
-    {
-    localStorage.setItem("FlashCard", "[]")
-      push("/")
-    }
-  }, [])
+   
 
   return (
     <>

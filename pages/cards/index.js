@@ -3,18 +3,34 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
 
-function Accueil({ flashCards, vide }) {
+function Accueil({ flashCards, vide, restore, deleteDomain }) {
   const render = flashCards && flashCards.map((flashCard, index) => {
     return flashCard.flashCards.length > 0 ? (
       <div key={index} style={{minHeight: "100%"}}>
-        <Link href={`/cards/${flashCard.titre}`}>
           <h3
             className={styles.card}
             style={{ marginBottom: 20, cursor: "pointer" }}
           >
-            {flashCard.titre}
-          </h3>
+        <Link href={`/cards/${flashCard.titre}`}>
+            {flashCard.titre} 
         </Link>
+        <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 adjust-logo"
+                    style={{ width: 20, marginLeft: 10, marginTop: 2 }}
+                    onClick={() => deleteDomain(flashCard.titre)}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                  </svg>
+          </h3>
       </div>
     ) : (
       ""
@@ -53,7 +69,7 @@ function Accueil({ flashCards, vide }) {
           }}
         >
           <h2 style={{ transform: "translateY(0)", marginRight: "5%" }}>
-            Mes Domaines 
+            Mes Domaines {!(flashCards === null || vide() || render === [false]) &&<button onClick={() => restore()}>tout supprimer</button>}
           </h2>
         </div>
       </div>

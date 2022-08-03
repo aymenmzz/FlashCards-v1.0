@@ -6,11 +6,12 @@ import { useRouter, push } from "next/router";
 
 function MyApp({ Component, pageProps }) {
 
-
+  
   const fetchDebut = () => {
     const test = localStorage.getItem("FlashCards")
     if(!test) { 
       localStorage.setItem("FlashCards", "[]")
+      
     return []
 }
     else return JSON.parse(test)
@@ -20,9 +21,12 @@ function MyApp({ Component, pageProps }) {
     typeof window !== "undefined" && fetchDebut()
   );
   React.useEffect(() => {
-    localStorage.setItem("FlashCards",JSON.stringify(
-        flashCards && flashCards.filter((flashCard) => flashCard.flashCards.length > 0))
-    );
+    const test = localStorage.getItem("FlashCards")
+    fetch('/api/flashCards', {
+       method: 'POST',
+       body: test && test,
+       headers : {'Content-Type': 'application/json'}
+     }).then(rep => rep.json()).then(data => console.log(data))
   }, [flashCards]);
 
   // React.useEffect(() => {
@@ -136,6 +140,7 @@ function MyApp({ Component, pageProps }) {
   //pour tout remettre à 0 
   const restore = () => {
     typeof window !== "undefined" && localStorage.setItem("FlashCards", "[]")
+    setFlashCards([])
     push("/")
   }
 
