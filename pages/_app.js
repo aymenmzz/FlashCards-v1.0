@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
     const data = JSON.parse(test)
     fetch('/api/flashCards', {
        method: 'POST',
-       body: flashCards && flashCards,
+       body: flashCards && JSON.stringify(flashCards),
        headers : {'Content-Type': 'application/json'}
      }).then(rep => rep.json()).then(data => console.log(data))
   }, [flashCards]);

@@ -95,6 +95,11 @@ export default function Ajout({
         setReponse("");
         setTitre("");
         setIdentifiant("");
+        fetch('/api/flashCards', {
+          method: 'POST',
+          body: flashCards && flashCards,
+          headers : {'Content-Type': 'application/json'}
+        }).then(rep => rep.json()).then(data => console.log(data))
       }
     }
   };
