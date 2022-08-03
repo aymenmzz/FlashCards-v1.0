@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   const fetchDebut = () => {
     const test = localStorage.getItem("FlashCards")
     if(!test) { 
-      localStorage.setItem("FlashCards", "[]")  
+      localStorage.setItem("FlashCards", '[]')  
     return []
 }
     else return JSON.parse(test)
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
     const data = JSON.parse(test)
     fetch('/api/flashCards', {
        method: 'POST',
-       body: flashCards && JSON.stringify(flashCards),
+       body: flashCards && flashCards,
        headers : {'Content-Type': 'application/json'}
      }).then(rep => rep.json()).then(data => console.log(data))
   }, [flashCards]);
