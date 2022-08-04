@@ -2,20 +2,19 @@ import { useRouter, push } from "next/router";
 import React from "react";
 import styles from "../../../styles/Home.module.css";
 import Link from "next/link"; 
-import  {buildFlashCardsPath, extractFlashCards} from "../../api/flashCards"
 
-function RenderDomains({ flashCar, removeFlashCard}) {
+function RenderDomains({ flashCards, removeFlashCard}) {
   const router = useRouter();
   const domain = router.query.domains;
   // console.log(flashCar)
 
-  console.log("ssr : ", flashCar)
+  console.log("ssr : ", flashCards)
   
   const [exist, setExist] = React.useState(
     (function () {
       let retourExist = false;
-      flashCar && flashCar.map((flashCard) => {
-        if (flashCard.titre === "" + domain) retourExist = true;
+      flashCards && flashCards.map((flashCard) => {
+        if (flashCards.titre === "" + domain) retourExist = true;
       });
       return retourExist;
     })()
@@ -23,7 +22,7 @@ function RenderDomains({ flashCar, removeFlashCard}) {
 
   const card = (function () {
     let retour = null;
-    flashCar && flashCar.map((flash) => {
+    flashCards && flashCards.map((flash) => {
       if (flash.titre === domain) {
         retour = flash;
       }
@@ -32,25 +31,25 @@ function RenderDomains({ flashCar, removeFlashCard}) {
   })();
   
   const [cards, setCards] = React.useState(
-    flashCar && flashCar.filter((flash) => flash.titre === domain)[0]
+    flashCards && flashCards.filter((flash) => flash.titre === domain)[0]
     );
     
     React.useEffect(() => {
       let retourExist = false;
-      flashCar && flashCar.map((flashCard) => {
+      flashCards && flashCards.map((flashCard) => {
         if (flashCard.titre === domain) retourExist = true;
       });
     setExist(retourExist);
     let retour = null;
-    flashCar && flashCar.map((flash) => {
+    flashCards && flashCards.map((flash) => {
       if (flash.titre === domain) {
         retour = flash;
       }
     });
     setCards(retour);
-  }, [flashCar]);
+  }, [flashCards]);
 
-  const render = flashCar.length > 0 ? (
+  const render = flashCards.length > 0 ? (
     <>
       <div
         style={{
@@ -145,7 +144,7 @@ function RenderDomains({ flashCar, removeFlashCard}) {
     typeof window !== "undefined" && push("/cards/"+domain)
     
     typeof window !== "undefined" && console.log(JSON.parse(localStorage.getItem("FlashCar")));
-    console.log(flashCar)
+    console.log(flashCards)
     console.log(e)
     return <></>;
   }
@@ -160,11 +159,6 @@ function RenderDomains({ flashCar, removeFlashCard}) {
 
 
 
-export async function getServerSideProps() {
-const filePath = buildFlashCardsPath()
-const testFetch = extractFlashCards(filePath)
 
-  return {props: {flashCar: testFetch}}
-}
 
 export default RenderDomains;

@@ -6,27 +6,11 @@ import { useRouter, push } from "next/router";
 function MyApp({ Component, pageProps }) {
 
   
-  const fetchDebut = () => {
-    const test = localStorage.getItem("FlashCards")
-    if(!test) { 
-      localStorage.setItem("FlashCards", '[]')  
-    return []
-}
-    else return JSON.parse(test)
-  }
+  
 
   const [flashCards, setFlashCards] = React.useState(
-    typeof window !== "undefined" && fetchDebut()
+    () => []
   );
-  React.useEffect(() => {
-    const test = localStorage.getItem("FlashCards")
-    const data = JSON.parse(test)
-    fetch('/api/flashCards', {
-       method: 'POST',
-       body: flashCards && JSON.stringify(flashCards),
-       headers : {'Content-Type': 'application/json'}
-     }).then(rep => rep.json()).then(data => console.log(data))
-  }, [flashCards]);
 
   // React.useEffect(() => {
   //   const initialise = () => {
@@ -56,22 +40,11 @@ function MyApp({ Component, pageProps }) {
     return retour;
   };
 
-  // fonction qui sera appellée à chaque modification du state flashCards
-  //pour sauvegarder les modifications en local pour les prochaines utilisations
-  const save = () => {
-    typeof window !== "undefined"
-      ? localStorage.setItem(
-          "FlashCards",
-          JSON.stringify(flashCards && flashCards)
-        )
-      : "";
-  };
-
-  save();
+  
   //pour ajouter un nouveau domaine
   const addNewDomain = (newFlash) => {
     setFlashCards((prevFlash) => [...prevFlash, newFlash]);
-    save();
+    
   };
   //sert à rajouter une flashCard à un domaine déjà existant
   const addFlashCardToDomain = (domain, flashCard) => {
@@ -91,7 +64,7 @@ function MyApp({ Component, pageProps }) {
     //4) mettre à jour le state
     setFlashCards(retour);
     //5) sauvegarder les modifications
-    save();
+    
   };
 
   //pour supprimer une flash card d'un domaine
@@ -127,7 +100,6 @@ function MyApp({ Component, pageProps }) {
     //4) mettre à jour le state
     // setFlashCards(finalValue);
     //5) sauvegarder les modifications
-    vide() ? localStorage.removeItem("FlashCards") : save();
   };
 
   //pour supprimer un domaine

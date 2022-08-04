@@ -15,13 +15,10 @@ export function extractFlashCards(filePath) {
 
 function handler(req, res) {
 
-  if(req.method === 'POST') {
     const filePath = buildFlashCardsPath()
     fs.writeFileSync(filePath, JSON.stringify(req.body))
     res.status(201).json({message: "Récupération effectuée avec succès !"})
-  }
-  else
-  res.status(200).json({ name: 'John Doe' })
+  
 }
 
 

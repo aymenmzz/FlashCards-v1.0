@@ -98,7 +98,6 @@ export default function Ajout({
         fetch('/api/flashCards', {
           method: 'POST',
           body: flashCards && flashCards,
-          headers : {'Content-Type': 'application/json'}
         }).then(rep => rep.json()).then(data => console.log(data))
       }
     }
