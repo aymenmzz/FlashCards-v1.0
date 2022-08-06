@@ -4,13 +4,20 @@ import React from "react";
 import { useRouter, push } from "next/router";
 import useSWR from "swr";
 
-function MyApp({ Component, pageProps }) {
-  const { data, error } = useSWR("fetch", async () => {
-    if (typeof window !== "undefined")
-      return JSON.parse(localStorage.getItem("FlasCards"));
-  });
+import Loading from "react-loading";
 
-  const [flashCards, setFlashCards] = React.useState(data && data);
+function MyApp({ Component, pageProps }) {
+  const test = useSWR("fetch", async () => {
+    return JSON.parse(localStorage.getItem("FlasCards"));
+  });
+  console.log("test : ", test);
+  // console.log("data : ", data);
+
+  const val = JSON.parse(localStorage.getItem("FlashCards"));
+
+  // if (!data) return <Loading />;
+
+  const [flashCards, setFlashCards] = React.useState(val ? val : []);
 
   console.log(flashCards);
 
