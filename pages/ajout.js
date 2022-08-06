@@ -19,12 +19,12 @@ export default function Ajout({
   const [titre, setTitre] = React.useState(() => "");
   const [identifiant, setIdentifiant] = React.useState(() => "");
 
-
   const include = () => {
     let retour = false;
-    flashCards && flashCards.map((flashCard) => {
-      if (flashCard.titre === titre) retour = true;
-    });
+    flashCards &&
+      flashCards.map((flashCard) => {
+        if (flashCard.titre === titre) retour = true;
+      });
     return retour;
   };
 
@@ -32,12 +32,13 @@ export default function Ajout({
     let retour = false;
     if (identifiant === "") return retour;
     else {
-      const currentDomain = flashCards && flashCards.filter(
-        (flashCard) => flashCard.titre === titre
-      )[0];
-     currentDomain &&  currentDomain.flashCards.map((flashCard) => {
-        if (flashCard.id === identifiant) retour = true;
-      });
+      const currentDomain =
+        flashCards &&
+        flashCards.filter((flashCard) => flashCard.titre === titre)[0];
+      currentDomain &&
+        currentDomain.flashCards.map((flashCard) => {
+          if (flashCard.id === identifiant) retour = true;
+        });
       return retour;
     }
   };
@@ -60,7 +61,7 @@ export default function Ajout({
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (question === "" || reponse === "" || titre === "", identifiant === "")
+    if ((question === "" || reponse === "" || titre === "", identifiant === ""))
       toast.error("Il manque une ou plusieurs informations");
     else if (!question.includes("?"))
       toast.error(
@@ -79,15 +80,15 @@ export default function Ajout({
         };
         //si flashCards vide newFlashCard()
         if (!flashCards) {
-          newFlashCard({ titre, flashCards: [flashCards && flashCard] });
+          newFlashCard({ titre, flashCards: [/*flashCards && */ flashCard] });
         }
         //sinon si domaine non existant addDomain()
         else if (!include()) {
-          addDomain({ titre, flashCards: [flashCards && flashCard] });
+          addDomain({ titre, flashCards: [/*flashCards && */ flashCard] });
         }
         // sinon [domaine déjà existant] addFlashCard()
         else {
-          addFlashCard(titre, flashCards && flashCard);
+          addFlashCard(titre, /*flashCards && */ flashCard);
         }
         toast.success(`La Flash Card sur ${titre} a été ajoutée !`);
 
@@ -95,10 +96,10 @@ export default function Ajout({
         setReponse("");
         setTitre("");
         setIdentifiant("");
-        fetch('/api/flashCards', {
-          method: 'POST',
-          body: flashCards && flashCards,
-        }).then(rep => rep.json()).then(data => console.log(data))
+        //   fetch('/api/flashCards', {
+        //     method: 'POST',
+        //     body: flashCards && flashCards,
+        //   }).then(rep => rep.json()).then(data => console.log(data))
       }
     }
   };
@@ -141,8 +142,8 @@ export default function Ajout({
           </h2>
         </div>
       </div>
-        <br/>
-        <br/>
+      <br />
+      <br />
       <h3 style={{ textAlign: "center" }}>Comment ça marche ? </h3>
       <p className={styles.card}>
         Rentrez dans un premier temps le domaine concerné, vos Flash Cards

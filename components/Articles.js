@@ -35,7 +35,7 @@ const articles = [
 export default function Articles() {
   const render = articles.map((article, index) => {
     return (
-      <div key={index}>
+      <div key={index} style={{ color: "black" }}>
         {article.title !== "" ? (
           window.outerHeight < 795 && window.outerWidth < 500 ? (
             <a href={article.link} target="_blank" rel="noopener noreferrer">

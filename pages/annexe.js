@@ -70,9 +70,12 @@ export default function Annexe() {
         Plus de détails sur l&lsquo;applicaton
       </h3>
       <p className={styles.card} style={{ marginBottom: 20 }}>
-        Cette application est la version 1.0.
+        Cette application est la version 1.1.
         <br />
-        La dernière mise à jour date du 31/07/2022.
+        La version 1.0 date du 31/07/2022. Elle ne permettait que la création de
+        flashCards, pas la sauvegarde.
+        <br />
+        La dernière mise à jour date du 06/08/2022.
         <br />
         Elle a été codée à partir du 24/07/2022.
       </p>

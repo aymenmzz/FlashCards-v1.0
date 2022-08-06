@@ -2,7 +2,7 @@ import React from "react";
 import style from "../styles/Menu.module.css";
 import Articles from "./Articles";
 
-export default function Menu({ toggleHide, dark}) {
+export default function Menu({ toggleHide, dark }) {
   return (
     <div
       style={{
@@ -21,6 +21,7 @@ export default function Menu({ toggleHide, dark}) {
           transform: "translateX(0)",
           animation: `linear .15s ${style.animate}`,
           backgroundColor: "lightgray",
+          color: "black",
         }}
       >
         <div

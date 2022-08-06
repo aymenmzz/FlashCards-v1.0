@@ -2,15 +2,17 @@ import "../styles/globals.css";
 import Layout from "../components/Layout";
 import React from "react";
 import { useRouter, push } from "next/router";
+import useSWR from "swr";
 
 function MyApp({ Component, pageProps }) {
+  const { data, error } = useSWR("fetch", async () => {
+    if (typeof window !== "undefined")
+      return JSON.parse(localStorage.getItem("FlasCards"));
+  });
 
-  
-  
+  const [flashCards, setFlashCards] = React.useState(data && data);
 
-  const [flashCards, setFlashCards] = React.useState(
-    () => []
-  );
+  console.log(flashCards);
 
   // React.useEffect(() => {
   //   const initialise = () => {
@@ -19,61 +21,72 @@ function MyApp({ Component, pageProps }) {
   //   return initialise();
   // }, []);
 
+  React.useEffect(() => {
+    flashCards &&
+      localStorage.setItem("FlashCards", JSON.stringify(flashCards));
+  }, [flashCards]);
+
   const vide = () => {
     let retour = true;
-    flashCards && flashCards.map((flashCard) => {
-      if (flashCard.flashCards.length > 0) retour = false;
-    });
+    flashCards &&
+      flashCards.map((flashCard) => {
+        if (flashCard.flashCards.length > 0) retour = false;
+      });
     return retour;
   };
 
   const getCard = (domain) => {
-    return flashCards && flashCards.filter((flash) => flash.titre === domain)[0];
+    return (
+      flashCards && flashCards.filter((flash) => flash.titre === domain)[0]
+    );
   };
+
+  const save = (val) => localStorage.setItem("FlashCards", JSON.stringify(val));
 
   //pour accéder plus rapidement à une flashCard associée à un domaine
   const getFlashCardsByDomain = (domain) => {
     let retour = null;
-    flashCards && flashCards.map((flashCard) => {
-      if (flashCard.titre === domain) retour = flashCard;
-    });
+    flashCards &&
+      flashCards.map((flashCard) => {
+        if (flashCard.titre === domain) retour = flashCard;
+      });
     return retour;
   };
 
-  
   //pour ajouter un nouveau domaine
   const addNewDomain = (newFlash) => {
     setFlashCards((prevFlash) => [...prevFlash, newFlash]);
-    
+    save(flashCards);
   };
   //sert à rajouter une flashCard à un domaine déjà existant
   const addFlashCardToDomain = (domain, flashCard) => {
     const retour = []; // variable pour réecrire le state
     //1) extraire le domaine du state dans une variable mutable
-    let mutableDomain = flashCards && flashCards.filter(
-      (flashCard) => flashCard.titre === domain
-    )[0];
+    let mutableDomain =
+      flashCards &&
+      flashCards.filter((flashCard) => flashCard.titre === domain)[0];
     //2) ajouter la flashCard dans la variable
     mutableDomain.flashCards.push(flashCard);
     //3) remplacer les valeurs associées au domaine en question dans
     //une nouvelle variable qui sera ajoutée dans le state
-    flashCards && flashCards.map((flashCard) => {
-      if (flashCard.titre === domain) retour.push(mutableDomain);
-      else retour.push(flashCard);
-    });
+    flashCards &&
+      flashCards.map((flashCard) => {
+        if (flashCard.titre === domain) retour.push(mutableDomain);
+        else retour.push(flashCard);
+      });
     //4) mettre à jour le state
     setFlashCards(retour);
     //5) sauvegarder les modifications
-    
+    save(retour);
   };
 
   //pour supprimer une flash card d'un domaine
   const removeFlashCard = (domain, id) => {
     let finalValue = [];
     //1) extraire le domaine dans une variable mutable
-    let mutableDomain = flashCards && flashCards.filter(
-      (flashCard) => flashCard.titre === domain
-    )[0];
+    let mutableDomain =
+      flashCards &&
+      flashCards.filter((flashCard) => flashCard.titre === domain)[0];
     //2) retirer la flashCard du domaine mutable
     const retour = [];
     mutableDomain.flashCards.map((flashCard) => {
@@ -85,60 +98,67 @@ function MyApp({ Component, pageProps }) {
       getFlashCardsByDomain(domain).flashCards[0] &&
       getFlashCardsByDomain(domain).flashCards.length > 0
     ) {
-    flashCards && flashCards.map((flashCard) => {
-        if (flashCard.titre === domain) finalValue.push(mutableDomain);
-        else finalValue.push(flashCard);
-      });
-      push(`/cards/${domain}`)
-}
-    else {
-      flashCards && flashCards.map((flashCard) => {
-        if (flashCard.titre !== mutableDomain.titre) finalValue.push(flashCard);
-      });
+      flashCards &&
+        flashCards.map((flashCard) => {
+          if (flashCard.titre === domain) finalValue.push(mutableDomain);
+          else finalValue.push(flashCard);
+        });
+      push(`/cards/${domain}`);
+    } else {
+      flashCards &&
+        flashCards.map((flashCard) => {
+          if (flashCard.titre !== mutableDomain.titre)
+            finalValue.push(flashCard);
+        });
       vide() ? push("/") : push("/cards");
     }
     //4) mettre à jour le state
-    // setFlashCards(finalValue);
+    setFlashCards(finalValue);
     //5) sauvegarder les modifications
+    save(finalValue);
   };
 
   //pour supprimer un domaine
   const deleteDomain = (domain) => {
-    setFlashCards(prevFlash => prevFlash.filter(flashCard => flashCard.titre !== domain))
-    vide() ? push("/") : push("/cards")
-  }
+    setFlashCards((prevFlash) =>
+      prevFlash.filter((flashCard) => flashCard.titre !== domain)
+    );
+    save(flashCards);
+    vide() ? push("/") : push("/cards");
+  };
 
-  //pour tout remettre à 0 
+  //pour tout remettre à 0
   const restore = () => {
-    typeof window !== "undefined" && localStorage.setItem("FlashCards", "[]")
-    setFlashCards([])
-    push("/")
-  }
+    typeof window !== "undefined" && localStorage.setItem("FlashCards", "[]");
+    setFlashCards([]);
+    push("/");
+  };
 
   //au lancement de l'application, aucune flashCard n'est attribuée,
   //cette fonction sera appellé à ce moment pour initialiser
   //la variable localStorage
   const newFlashCard = (firstFlash) => {
-    localStorage.setItem("FlashCards", JSON.stringify([firstFlash]));
+    // localStorage.setItem("FlashCards", JSON.stringify([firstFlash]));
     setFlashCards([firstFlash]);
+    save([firstFlash]);
   };
 
   return (
     <>
-    {
-      <Layout>
-        <Component
-          {...pageProps}
-          flashCards={flashCards && flashCards}
-          addDomain={addNewDomain}
-          addFlashCard={addFlashCardToDomain}
-          newFlashCard={newFlashCard}
-          removeFlashCard={removeFlashCard}
-          vide={vide}
-          deleteDomain={deleteDomain}
-          restore={restore}
-        />
-      </Layout>
+      {
+        <Layout>
+          <Component
+            {...pageProps}
+            flashCards={flashCards && flashCards}
+            addDomain={addNewDomain}
+            addFlashCard={addFlashCardToDomain}
+            newFlashCard={newFlashCard}
+            removeFlashCard={removeFlashCard}
+            vide={vide}
+            deleteDomain={deleteDomain}
+            restore={restore}
+          />
+        </Layout>
       }
     </>
   );
