@@ -13,7 +13,9 @@ function MyApp({ Component, pageProps }) {
   console.log("test : ", test);
   // console.log("data : ", data);
 
-  const val = JSON.parse(localStorage.getItem("FlashCards"));
+  const val =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("FlashCards"));
 
   // if (!data) return <Loading />;
 
