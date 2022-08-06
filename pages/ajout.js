@@ -163,7 +163,7 @@ export default function Ajout({
         <br />
         <br />
         Exemple : <br />
-        Domaine : Matématiques
+        Domaine : Mathématiques
         <br /> Question : Combien font 1+1 ?<br /> Réponse : 2
         <br />
         Identifiant : 1+1
