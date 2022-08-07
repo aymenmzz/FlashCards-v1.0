@@ -153,12 +153,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
-    <UserContext.Provider
-      value={
-        typeof window !== "undefined" &&
-        JSON.parse(localStorage.getItem("FlashCards"))
-      }
-    >
+    <UserContext.Provider value={typeof window !== "undefined" && flashCards}>
       <Layout>
         <Component
           {...pageProps}
