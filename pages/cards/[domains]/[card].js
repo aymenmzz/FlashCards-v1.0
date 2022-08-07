@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Card from "../../../components/Card";
 import React from "react";
-import styles from "../../../styles/Home.module.css";
 import { UserContext } from "../../../components/MyContext";
 
 function FlashCard() {
@@ -10,7 +9,6 @@ function FlashCard() {
 
   const flashCards = React.useContext(UserContext);
 
-  console.log(card);
   const getCurrentFlashCard = () => {
     //1) extraire dans une constante le domaine
     const domain =

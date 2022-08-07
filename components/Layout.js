@@ -1,6 +1,5 @@
 import DarkModeButton from "./DarkModeButton";
 import Link from "next/link";
-import styled from "styled-components";
 import Menu from "./Menu";
 import React from "react";
 import { UserContext } from "./MyContext";
@@ -15,8 +14,6 @@ function Layout({ children }) {
   const toggleHide = () => setHide((prevHide) => !prevHide);
 
   const user = React.useContext(UserContext);
-
-  console.log("user : ", user);
 
   return (
     <div>

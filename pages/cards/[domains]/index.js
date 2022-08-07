@@ -7,45 +7,14 @@ import { UserContext } from "../../../components/MyContext";
 function RenderDomains({ removeFlashCard }) {
   const router = useRouter();
   const domain = router.query.domains;
-  // console.log(flashCar)
 
   const flashCards = React.useContext(UserContext);
-
-  console.log("ssr : ", flashCards);
-
-  const [exist, setExist] = React.useState(
-    (function () {
-      let retourExist = false;
-      flashCards &&
-        flashCards.map((flashCard) => {
-          if (flashCards.titre === "" + domain) retourExist = true;
-        });
-      return retourExist;
-    })()
-  );
-
-  const card = (function () {
-    let retour = null;
-    flashCards &&
-      flashCards.map((flash) => {
-        if (flash.titre === domain) {
-          retour = flash;
-        }
-      });
-    return retour;
-  })();
 
   const [cards, setCards] = React.useState(
     flashCards && flashCards.filter((flash) => flash.titre === domain)[0]
   );
 
   React.useEffect(() => {
-    let retourExist = false;
-    flashCards &&
-      flashCards.map((flashCard) => {
-        if (flashCard.titre === domain) retourExist = true;
-      });
-    setExist(retourExist);
     let retour = null;
     flashCards &&
       flashCards.map((flash) => {
@@ -89,7 +58,6 @@ function RenderDomains({ removeFlashCard }) {
             }}
           >
             <h2 style={{ transform: "translateY(0)", marginRight: "5%" }}>
-              {/* {exist ? `Mes Flash Cards sur ${domain}` : "Erreur"} */}
               Mes Flash Cards sur {domain}
             </h2>
           </div>
@@ -140,7 +108,6 @@ function RenderDomains({ removeFlashCard }) {
     ) : (
       ""
     );
-  //écrire une variable render pour y mettre les flash cards associées au domaine courant
   try {
     return <>{rendered}</>;
   } catch (e) {
@@ -152,13 +119,6 @@ function RenderDomains({ removeFlashCard }) {
     console.log(e);
     return <></>;
   }
-}
-
-{
-  /* mettre ici la variable render contenant du jsx pour afficher toutes les flash cards associées au domaine courant */
-}
-{
-  /* {exist ? "" : <p>Erreur, il n'y aucun domaine au nommé {domain}</p>} */
 }
 
 export default RenderDomains;

@@ -83,7 +83,6 @@ function Accueil({ vide, restore, deleteDomain }) {
 
       {flashCards === null || vide() || rendered === [false] ? (
         <>
-          {/* Si Aucune Flash Card n'est présente après avoir fetch LocalStorage */}
           <h2 style={{ textAlign: "center", marginBottom: 20 }}>
             Vous n&lsquo;avez aucune Flash Card pour le moment !
           </h2>
@@ -133,7 +132,6 @@ function Accueil({ vide, restore, deleteDomain }) {
       ) : (
         <>{rendered}</>
       )}
-      {/* Sinon ....... */}
     </>
   );
 }

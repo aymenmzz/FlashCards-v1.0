@@ -1,15 +1,12 @@
 import Link from "next/link";
-import { useRouter, push } from "next/router";
+import { push } from "next/router";
 import React from "react";
 import styles from "../styles/Home.module.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { nanoid } from "nanoid";
 import { UserContext } from "../components/MyContext";
 
 export default function Ajout({ addFlashCard, newFlashCard, addDomain }) {
-  const router = useRouter();
-
   const flashCards = React.useContext(UserContext);
 
   const [question, setQuestion] = React.useState(() => "");
@@ -78,15 +75,15 @@ export default function Ajout({ addFlashCard, newFlashCard, addDomain }) {
         };
         //si flashCards vide newFlashCard()
         if (!flashCards) {
-          newFlashCard({ titre, flashCards: [/*flashCards && */ flashCard] });
+          newFlashCard({ titre, flashCards: [flashCard] });
         }
         //sinon si domaine non existant addDomain()
         else if (!include()) {
-          addDomain({ titre, flashCards: [/*flashCards && */ flashCard] });
+          addDomain({ titre, flashCards: [flashCard] });
         }
         // sinon [domaine déjà existant] addFlashCard()
         else {
-          addFlashCard(titre, /*flashCards && */ flashCard);
+          addFlashCard(titre, flashCard);
         }
         toast.success(`La Flash Card sur ${titre} a été ajoutée !`);
 
@@ -94,10 +91,6 @@ export default function Ajout({ addFlashCard, newFlashCard, addDomain }) {
         setReponse("");
         setTitre("");
         setIdentifiant("");
-        //   fetch('/api/flashCards', {
-        //     method: 'POST',
-        //     body: flashCards && flashCards,
-        //   }).then(rep => rep.json()).then(data => console.log(data))
       }
     }
   };
@@ -161,7 +154,7 @@ export default function Ajout({ addFlashCard, newFlashCard, addDomain }) {
         <br />
         <br />
         Exemple : <br />
-        Domaine : Matématiques
+        Domaine : Mathématiques
         <br /> Question : Combien font 1+1 ?<br /> Réponse : 2
         <br />
         Identifiant : 1+1

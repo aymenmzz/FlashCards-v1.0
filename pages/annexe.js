@@ -3,7 +3,10 @@ import styles from "../styles/Home.module.css";
 
 export default function Annexe() {
   //servira pour les prochains ajouts
-  const versions = [{ version: "1.0", date: "31/07/2022" }];
+  const versions = [
+    { version: "1.0", date: "31/07/2022" },
+    { version: "1.1", date: "07/08/2022" },
+  ];
   return (
     <>
       <div
@@ -75,7 +78,7 @@ export default function Annexe() {
         La version 1.0 date du 31/07/2022. Elle ne permettait que la création de
         flashCards, pas la sauvegarde.
         <br />
-        La dernière mise à jour date du 06/08/2022.
+        La dernière mise à jour date du 07/08/2022.
         <br />
         Elle a été codée à partir du 24/07/2022.
       </p>

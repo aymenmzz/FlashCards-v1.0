@@ -1,17 +1,14 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import React from "react";
-import Menu from "../components/Menu";
-import {push} from "next/router"
-
 
 export default function Home() {
-   
-
   return (
     <>
+      <Head>
+        <title>FlashCards</title>
+      </Head>
       <h2 style={{ textAlign: "center" }}>
         Bienvenue sur l&lsquo;application <br /> Flash Cards !{" "}
       </h2>
@@ -48,14 +45,22 @@ export default function Home() {
       <div className={styles.buttonContainer}>
         <Link href="/cards">
           <a>
-            <button style={{color: 'black', backgroundColor: "lightgray"}} className={styles.consult} id="consult">
+            <button
+              style={{ color: "black", backgroundColor: "lightgray" }}
+              className={styles.consult}
+              id="consult"
+            >
               Consulter mes FlashCards
             </button>
           </a>
         </Link>
         <Link href="/ajout">
           <a>
-            <button style={{color: 'black', backgroundColor: "lightgray"}} className={styles.add} id="add">
+            <button
+              style={{ color: "black", backgroundColor: "lightgray" }}
+              className={styles.add}
+              id="add"
+            >
               Ajouter une FlashCard
             </button>
           </a>

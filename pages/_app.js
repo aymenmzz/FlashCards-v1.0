@@ -2,36 +2,16 @@ import "../styles/globals.css";
 import Layout from "../components/Layout";
 import React from "react";
 import { useRouter, push } from "next/router";
-import useSWR from "swr";
+import Head from "next/head";
 import Loading from "react-loading";
 import { UserContext } from "../components/MyContext";
 
 function MyApp({ Component, pageProps }) {
-  const test = useSWR("fetch", async () => {
-    return JSON.parse(localStorage.getItem("FlasCards"));
-  });
-  console.log("test : ", test);
-  // console.log("data : ", data);
-
   const val =
     typeof window !== "undefined" &&
     JSON.parse(localStorage.getItem("FlashCards"));
 
-  // if (!data) return <Loading />;
-
   const [flashCards, setFlashCards] = React.useState(val ? val : []);
-
-  console.log(flashCards);
-  const flashs = React.useMemo(() => val, [val]);
-
-  console.log("flashCards : ", flashs);
-
-  // React.useEffect(() => {
-  //   const initialise = () => {
-  //     setFlashCards(JSON.parse(localStorage.getItem("FlashCards")));
-  //   };
-  //   return initialise();
-  // }, []);
 
   React.useEffect(() => {
     flashCards &&
@@ -70,7 +50,6 @@ function MyApp({ Component, pageProps }) {
   //pour ajouter un nouveau domaine
   const addNewDomain = (newFlash) => {
     // setFlashCards((prevFlash) => [...prevFlash, newFlash]);
-    console.log("final result : ", [...flashCards, newFlash]);
     save([...flashCards, newFlash]);
   };
   //sert à rajouter une flashCard à un domaine déjà existant
@@ -161,6 +140,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContext.Provider value={typeof window !== "undefined" && flashCards}>
       <Layout>
+        <Head>
+          <title>FlashCards</title>
+          <meta
+            name="description"
+            content="Application pour créer, sauvegarder et consulter des flashCards"
+          />
+        </Head>
         <Component
           {...pageProps}
           addDomain={addNewDomain}
