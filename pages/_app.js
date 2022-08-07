@@ -3,8 +3,8 @@ import Layout from "../components/Layout";
 import React from "react";
 import { useRouter, push } from "next/router";
 import useSWR from "swr";
-
 import Loading from "react-loading";
+import { UserContext } from "../components/MyContext";
 
 function MyApp({ Component, pageProps }) {
   const test = useSWR("fetch", async () => {
@@ -153,24 +153,28 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
-    <>
-      {
-        <Layout>
-          <Component
-            {...pageProps}
-            flashCards={flashCards && flashCards}
-            addDomain={addNewDomain}
-            addFlashCard={addFlashCardToDomain}
-            newFlashCard={newFlashCard}
-            removeFlashCard={removeFlashCard}
-            vide={vide}
-            deleteDomain={deleteDomain}
-            restore={restore}
-          />
-        </Layout>
+    <UserContext.Provider
+      value={
+        typeof window !== "undefined" &&
+        JSON.parse(localStorage.getItem("FlashCards"))
       }
-    </>
+    >
+      <Layout>
+        <Component
+          {...pageProps}
+          addDomain={addNewDomain}
+          addFlashCard={addFlashCardToDomain}
+          newFlashCard={newFlashCard}
+          removeFlashCard={removeFlashCard}
+          vide={vide}
+          deleteDomain={deleteDomain}
+          restore={restore}
+        />
+      </Layout>
+    </UserContext.Provider>
   );
 }
 
 export default MyApp;
+
+// flashCards={flashCards && flashCards}

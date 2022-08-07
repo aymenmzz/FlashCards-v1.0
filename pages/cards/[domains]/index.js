@@ -2,11 +2,14 @@ import { useRouter, push } from "next/router";
 import React from "react";
 import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
+import { UserContext } from "../../../components/MyContext";
 
-function RenderDomains({ flashCards, removeFlashCard }) {
+function RenderDomains({ removeFlashCard }) {
   const router = useRouter();
   const domain = router.query.domains;
   // console.log(flashCar)
+
+  const flashCards = React.useContext(UserContext);
 
   console.log("ssr : ", flashCards);
 
@@ -53,7 +56,7 @@ function RenderDomains({ flashCards, removeFlashCard }) {
     setCards(retour);
   }, [flashCards]);
 
-  const render =
+  const rendered =
     flashCards && flashCards.length > 0 ? (
       <>
         <div
@@ -64,7 +67,7 @@ function RenderDomains({ flashCards, removeFlashCard }) {
           }}
         >
           <svg
-            onClick={() => router.back()}
+            onClick={() => push("/cards")}
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 adjust-logo"
             fill="none"
@@ -139,7 +142,7 @@ function RenderDomains({ flashCards, removeFlashCard }) {
     );
   //écrire une variable render pour y mettre les flash cards associées au domaine courant
   try {
-    return <>{render}</>;
+    return <>{rendered}</>;
   } catch (e) {
     typeof window !== "undefined" && push("/cards/" + domain);
 

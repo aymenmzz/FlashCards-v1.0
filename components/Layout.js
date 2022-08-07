@@ -3,17 +3,20 @@ import Link from "next/link";
 import styled from "styled-components";
 import Menu from "./Menu";
 import React from "react";
+import { UserContext } from "./MyContext";
 
-function Layout({ children}) {
-
-  
+function Layout({ children }) {
   const [dark, setDark] = React.useState(() => false);
 
-  const toggleDark = () => setDark(prevDark=> !prevDark)
+  const toggleDark = () => setDark((prevDark) => !prevDark);
 
   const [hide, setHide] = React.useState(() => true);
 
   const toggleHide = () => setHide((prevHide) => !prevHide);
+
+  const user = React.useContext(UserContext);
+
+  console.log("user : ", user);
 
   return (
     <div>
@@ -22,8 +25,16 @@ function Layout({ children}) {
           <div
             style={
               dark
-                ? { backgroundColor: "black", color: "white", minHeight: "100vh" }
-                : { backgroundColor: "white",color: "black", minHeight: "100vh" }
+                ? {
+                    backgroundColor: "black",
+                    color: "white",
+                    minHeight: "100vh",
+                  }
+                : {
+                    backgroundColor: "white",
+                    color: "black",
+                    minHeight: "100vh",
+                  }
             }
           >
             <header className="header">
@@ -62,7 +73,7 @@ function Layout({ children}) {
                   </h2>
                 </a>
               </Link>
-              <DarkModeButton dark={dark} toggleDark={()=>toggleDark()} />
+              <DarkModeButton dark={dark} toggleDark={() => toggleDark()} />
             </header>
             <div style={{ minHeight: "92vh" }}>{children}</div>
             <footer

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter, push } from "next/router";
 import React from "react";
 import styles from "../styles/Home.module.css";
 import { toast, ToastContainer } from "react-toastify";
@@ -114,7 +114,7 @@ export default function Ajout({
         }}
       >
         <svg
-          onClick={() => router.back()}
+          onClick={() => push("/cards")}
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 adjust-logo"
           fill="none"
@@ -163,7 +163,7 @@ export default function Ajout({
         <br />
         <br />
         Exemple : <br />
-        Domaine : Mathématiques
+        Domaine : Matématiques
         <br /> Question : Combien font 1+1 ?<br /> Réponse : 2
         <br />
         Identifiant : 1+1

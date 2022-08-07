@@ -2,21 +2,25 @@ import { useRouter } from "next/router";
 import Card from "../../../components/Card";
 import React from "react";
 import styles from "../../../styles/Home.module.css";
+import { UserContext } from "../../../components/MyContext";
 
-function FlashCard({ flashCards }) {
+function FlashCard() {
   const router = useRouter();
-  const {card} = router.query;
+  const { card } = router.query;
 
-  console.log(card)
+  const flashCards = React.useContext(UserContext);
+
+  console.log(card);
   const getCurrentFlashCard = () => {
     //1) extraire dans une constante le domaine
-    const domain = flashCards && flashCards.filter(
-      (flashCard) => flashCard.titre === router.query.domains
-    )[0];
+    const domain =
+      flashCards &&
+      flashCards.filter(
+        (flashCard) => flashCard.titre === router.query.domains
+      )[0];
     //2) extraire dans une constante la flash card associée à l'id
-    const currentFlashCard = domain && domain.flashCards.filter(
-      (flashC) => flashC.id === card
-    )[0];
+    const currentFlashCard =
+      domain && domain.flashCards.filter((flashC) => flashC.id === card)[0];
     //3) renvoyer la constante créée en (2)
     return currentFlashCard;
   };
@@ -50,21 +54,17 @@ function FlashCard({ flashCards }) {
             justifyContent: "center",
             width: "100%",
           }}
-          >
+        >
           <h2 style={{ transform: "translateY(0)", marginRight: "5%" }}>
             {card}
           </h2>
         </div>
       </div>{" "}
-      <br/>
-      <br/>
-
+      <br />
+      <br />
       <Card flashCard={flashCards && getCurrentFlashCard()} />{" "}
     </>
   );
-
 }
 
-
-
-  export default FlashCard;
+export default FlashCard;
