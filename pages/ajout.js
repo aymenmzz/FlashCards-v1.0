@@ -5,14 +5,12 @@ import styles from "../styles/Home.module.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { nanoid } from "nanoid";
+import { UserContext } from "../components/MyContext";
 
-export default function Ajout({
-  flashCards,
-  addFlashCard,
-  newFlashCard,
-  addDomain,
-}) {
+export default function Ajout({ addFlashCard, newFlashCard, addDomain }) {
   const router = useRouter();
+
+  const flashCards = React.useContext(UserContext);
 
   const [question, setQuestion] = React.useState(() => "");
   const [reponse, setReponse] = React.useState(() => "");

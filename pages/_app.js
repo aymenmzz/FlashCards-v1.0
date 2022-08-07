@@ -22,6 +22,9 @@ function MyApp({ Component, pageProps }) {
   const [flashCards, setFlashCards] = React.useState(val ? val : []);
 
   console.log(flashCards);
+  const flashs = React.useMemo(() => val, [val]);
+
+  console.log("flashCards : ", flashs);
 
   // React.useEffect(() => {
   //   const initialise = () => {
@@ -50,8 +53,10 @@ function MyApp({ Component, pageProps }) {
     );
   };
 
-  const save = (val) => localStorage.setItem("FlashCards", JSON.stringify(val));
-
+  const save = (val) => {
+    localStorage.setItem("FlashCards", JSON.stringify(val));
+    setFlashCards(JSON.parse(localStorage.getItem("FlashCards")));
+  };
   //pour accéder plus rapidement à une flashCard associée à un domaine
   const getFlashCardsByDomain = (domain) => {
     let retour = null;
@@ -64,8 +69,9 @@ function MyApp({ Component, pageProps }) {
 
   //pour ajouter un nouveau domaine
   const addNewDomain = (newFlash) => {
-    setFlashCards((prevFlash) => [...prevFlash, newFlash]);
-    save(flashCards);
+    // setFlashCards((prevFlash) => [...prevFlash, newFlash]);
+    console.log("final result : ", [...flashCards, newFlash]);
+    save([...flashCards, newFlash]);
   };
   //sert à rajouter une flashCard à un domaine déjà existant
   const addFlashCardToDomain = (domain, flashCard) => {
@@ -84,7 +90,7 @@ function MyApp({ Component, pageProps }) {
         else retour.push(flashCard);
       });
     //4) mettre à jour le state
-    setFlashCards(retour);
+    // setFlashCards(retour);
     //5) sauvegarder les modifications
     save(retour);
   };
@@ -122,17 +128,17 @@ function MyApp({ Component, pageProps }) {
       vide() ? push("/") : push("/cards");
     }
     //4) mettre à jour le state
-    setFlashCards(finalValue);
+    // setFlashCards(finalValue);
     //5) sauvegarder les modifications
     save(finalValue);
   };
 
   //pour supprimer un domaine
   const deleteDomain = (domain) => {
-    setFlashCards((prevFlash) =>
-      prevFlash.filter((flashCard) => flashCard.titre !== domain)
-    );
-    save(flashCards);
+    // setFlashCards((prevFlash) =>
+    //   prevFlash.filter((flashCard) => flashCard.titre !== domain)
+    // );
+    save(flashCards.filter((flashCard) => flashCard.titre !== domain));
     vide() ? push("/") : push("/cards");
   };
 
@@ -148,7 +154,7 @@ function MyApp({ Component, pageProps }) {
   //la variable localStorage
   const newFlashCard = (firstFlash) => {
     // localStorage.setItem("FlashCards", JSON.stringify([firstFlash]));
-    setFlashCards([firstFlash]);
+    // setFlashCards([firstFlash]);
     save([firstFlash]);
   };
 
@@ -170,6 +176,6 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default React.memo(MyApp);
 
 // flashCards={flashCards && flashCards}
