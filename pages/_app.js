@@ -48,10 +48,8 @@ function MyApp({ Component, pageProps }) {
   };
 
   //pour ajouter un nouveau domaine
-  const addNewDomain = (newFlash) => {
-    // setFlashCards((prevFlash) => [...prevFlash, newFlash]);
-    save([...flashCards, newFlash]);
-  };
+  const addNewDomain = (newFlash) => save([...flashCards, newFlash]);
+    
   //sert à rajouter une flashCard à un domaine déjà existant
   const addFlashCardToDomain = (domain, flashCard) => {
     const retour = []; // variable pour réecrire le state
@@ -68,9 +66,7 @@ function MyApp({ Component, pageProps }) {
         if (flashCard.titre === domain) retour.push(mutableDomain);
         else retour.push(flashCard);
       });
-    //4) mettre à jour le state
-    // setFlashCards(retour);
-    //5) sauvegarder les modifications
+    //4) sauvegarder les modifications
     save(retour);
   };
 
@@ -106,17 +102,12 @@ function MyApp({ Component, pageProps }) {
         });
       vide() ? push("/") : push("/cards");
     }
-    //4) mettre à jour le state
-    // setFlashCards(finalValue);
-    //5) sauvegarder les modifications
+    //4) sauvegarder les modifications
     save(finalValue);
   };
 
   //pour supprimer un domaine
   const deleteDomain = (domain) => {
-    // setFlashCards((prevFlash) =>
-    //   prevFlash.filter((flashCard) => flashCard.titre !== domain)
-    // );
     save(flashCards.filter((flashCard) => flashCard.titre !== domain));
     vide() ? push("/") : push("/cards");
   };
@@ -131,11 +122,8 @@ function MyApp({ Component, pageProps }) {
   //au lancement de l'application, aucune flashCard n'est attribuée,
   //cette fonction sera appellé à ce moment pour initialiser
   //la variable localStorage
-  const newFlashCard = (firstFlash) => {
-    // localStorage.setItem("FlashCards", JSON.stringify([firstFlash]));
-    // setFlashCards([firstFlash]);
-    save([firstFlash]);
-  };
+  const newFlashCard = (firstFlash) => save([firstFlash]);
+  
 
   return (
     <UserContext.Provider value={typeof window !== "undefined" && flashCards}>
